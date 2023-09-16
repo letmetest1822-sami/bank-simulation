@@ -1,5 +1,6 @@
 package com.cydeo.repository;
 
+import com.cydeo.exception.AccountOwnershipException;
 import com.cydeo.exception.RecordNotFoundException;
 import com.cydeo.model.Account;
 import org.springframework.stereotype.Component;
@@ -27,4 +28,5 @@ public class AccountRepository {
                .findAny()
                .orElseThrow(() -> new RecordNotFoundException("Account does not exist in the Data Base"));
     }
+
 }
