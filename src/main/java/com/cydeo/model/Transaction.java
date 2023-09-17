@@ -14,5 +14,6 @@ public class Transaction {
     private UUID sender;  //it could be Account... but later
     private UUID receiver;
     private BigDecimal amount;
+    private String message;
     private Date createDate;
 }
