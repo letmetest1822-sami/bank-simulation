@@ -14,7 +14,7 @@ import java.util.UUID;
 @Component
 public class AccountServiceImpl implements AccountService {
 
-    AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     public AccountServiceImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
@@ -24,27 +24,23 @@ public class AccountServiceImpl implements AccountService {
     public Account createNewAccount(BigDecimal balance, Date createDate, AccountType accountType, Long userId) {
         //we need to create Account Object
         Account account = Account.builder().id(UUID.randomUUID()).userId(userId) //we did not get it .. created statically
-        .balance(balance).accountType(accountType).creationDate(createDate).build(); //like an AllArgsConstructor
+                .balance(balance).accountType(accountType).creationDate(createDate).build(); //like an AllArgsConstructor
 
         //Why we do it ourself instead of Spring? :
         // if we are carrying and there is no ACTION, just store the data = > we create.
         // if there is ACTION we use @Component
 
-
-        //Keep this object information at  somewhere
-
+        //Keep this object information at somewhere
 
         //Save into database(repository)
 
-
         //return the object created
-
 
         return accountRepository.save(account);
     }
 
     @Override
-    public List<Account> listAllAccount() {
+    public List<Account> listAllAccounts() {
         return accountRepository.findAll();
     }
 }

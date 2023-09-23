@@ -5,8 +5,8 @@ import com.cydeo.enums.AccountType;
 import com.cydeo.exception.AccountOwnershipException;
 import com.cydeo.exception.BadRequestException;
 import com.cydeo.exception.BalanceNotSufficientException;
-
 import com.cydeo.exception.UnderConstructionException;
+
 import com.cydeo.model.Account;
 import com.cydeo.model.Transaction;
 
@@ -57,25 +57,27 @@ public class TransactionServiceImpl implements TransactionService {
             //save into the db and return it
             return transactionRepository.save(transaction);
         }
-        else{
+        else {
             throw new UnderConstructionException("App is under construction, please try again later.");
         }
     }
+
     private void executeBalanceAndUpdateIfRequired(BigDecimal amount, Account sender, Account receiver){
-        if(checkSenderBalance(sender, amount)){
+        if (checkSenderBalance(sender, amount)){
             //update sender and receiver balance
             //100 - 80
             sender.setBalance(sender.getBalance().subtract(amount));
             //50 + 80
             receiver.setBalance(receiver.getBalance().add(amount));
-        }else{
+        }
+        else {
             throw new BalanceNotSufficientException("Balance is not enough for this transfer");
         }
     }
 
     private boolean checkSenderBalance(Account sender, BigDecimal amount) {
         //verify sender has enough balance to send
-        return sender.getBalance().subtract(amount).compareTo(BigDecimal.ZERO) >=0;
+        return sender.getBalance().subtract(amount).compareTo(BigDecimal.ZERO) >= 0;
     }
 
     private void checkAccountOwnership(Account sender, Account receiver) {
@@ -110,7 +112,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> findAllTransaction() {
+    public List<Transaction> findAllTransactions() {
         return transactionRepository.findAll();
     }
 

@@ -12,5 +12,5 @@ public interface TransactionService {
 
     Transaction makeTransfer(Account sender, Account receiver, BigDecimal amount, Date creationDate, String message) throws BadRequestException;
 
-    List<Transaction> findAllTransaction();
+    List<Transaction> findAllTransactions();
 }
