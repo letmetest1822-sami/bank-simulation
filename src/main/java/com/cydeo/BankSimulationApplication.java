@@ -17,18 +17,18 @@ public class BankSimulationApplication {
 
     public static void main(String[] args) {
         ApplicationContext container = SpringApplication.run(BankSimulationApplication.class, args);
-//
-//        //get account and transaction service beans
-//        AccountService accountService = container.getBean(AccountService.class);
-//        TransactionService transactionService = container.getBean(TransactionService.class);
-//
-//        //create 2 accounts sender and receiver
-//        Account sender1 = accountService.createNewAccount(BigDecimal.valueOf(70), new Date(), AccountType.CHECKING, 1L);
-//        Account receiver1 = accountService.createNewAccount(BigDecimal.valueOf(50), new Date(), AccountType.SAVING, 2L);
-//        Account receiver2 = null;
-//
-//        accountService.listAllAccount().forEach(System.out::println);
-//
+
+//        get account and transaction service beans
+        AccountService accountService = container.getBean(AccountService.class);
+        TransactionService transactionService = container.getBean(TransactionService.class);
+
+        //create 2 accounts sender and receiver
+        Account sender1 = accountService.createNewAccount(BigDecimal.valueOf(70), new Date(), AccountType.CHECKING, 1L);
+        Account receiver1 = accountService.createNewAccount(BigDecimal.valueOf(50), new Date(), AccountType.SAVING, 2L);
+        Account receiver2 = null;
+
+//        accountService.listAllAccounts().forEach(System.out::println);
+
 //        //Happy path : both accounts CHECKING, balance is OK
 //       transactionService.makeTransfer(sender1, receiver2, new BigDecimal(40), new Date(), "Transaction 1");
 //        System.out.println(transactionService.findAllTransaction().get(0));

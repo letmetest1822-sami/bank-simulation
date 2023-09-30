@@ -1,5 +1,6 @@
 package com.cydeo.service.impl;
 
+import com.cydeo.enums.AccountStatus;
 import com.cydeo.enums.AccountType;
 import com.cydeo.model.Account;
 import com.cydeo.repository.AccountRepository;
@@ -24,7 +25,8 @@ public class AccountServiceImpl implements AccountService {
     public Account createNewAccount(BigDecimal balance, Date createDate, AccountType accountType, Long userId) {
         //we need to create Account Object
         Account account = Account.builder().id(UUID.randomUUID()).userId(userId) //we did not get it .. created statically
-                .balance(balance).accountType(accountType).creationDate(createDate).build(); //like an AllArgsConstructor
+                .balance(balance).accountType(accountType).creationDate(createDate)
+                .accountStatus(AccountStatus.ACTIVE).build(); //like an AllArgsConstructor
 
         //Why we do it ourself instead of Spring? :
         // if we are carrying and there is no ACTION, just store the data = > we create.

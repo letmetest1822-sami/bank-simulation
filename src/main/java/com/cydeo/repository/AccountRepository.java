@@ -24,6 +24,8 @@ public class AccountRepository {
 
     public Account findById(UUID id) {
         //write a method that finds the account
+        //complete the method, that find the account inside the list, if not
+        //throw RecordNotFoundException
        return accountList.stream().filter(account -> account.getId().equals(id))
                .findAny()
                .orElseThrow(() -> new RecordNotFoundException("Account does not exist in the Data Base"));
